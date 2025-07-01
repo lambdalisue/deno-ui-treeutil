@@ -1,6 +1,6 @@
 import { assertEquals } from "@std/assert";
 import { describe, it } from "@std/testing/bdd";
-import { type TreeItem } from "./tree.ts";
+import type { TreeItem } from "./tree.ts";
 import {
   DefaultRenderer,
   type DefaultRendererOptions,
