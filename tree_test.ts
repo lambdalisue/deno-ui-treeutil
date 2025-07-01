@@ -1,6 +1,6 @@
-import { beforeEach, describe, it } from "jsr:@std/testing@^1.0.0/bdd";
-import { assertEquals, assertExists } from "jsr:@std/assert@^1.0.0";
-import { assert } from "jsr:@core/unknownutil@^4.3.0/assert";
+import { beforeEach, describe, it } from "@std/testing/bdd";
+import { assertEquals, assertExists } from "@std/assert";
+import { assert } from "@core/unknownutil/assert";
 import {
   collapseNode,
   expandNode,

@@ -1,5 +1,5 @@
-import { assertEquals } from "jsr:@std/assert@^1.0.0";
-import { describe, it } from "jsr:@std/testing@^1.0.0/bdd";
+import { assertEquals } from "@std/assert";
+import { describe, it } from "@std/testing/bdd";
 import { type TreeItem } from "./tree.ts";
 import {
   DefaultRenderer,

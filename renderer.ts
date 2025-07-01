@@ -7,7 +7,7 @@ import type { TreeBranchItem, TreeItem, TreeLeafItem } from "./tree.ts";
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { type Renderer } from "./renderer.ts";
  * import { type TreeItem } from "./tree.ts";
  *
@@ -37,7 +37,7 @@ export interface Renderer {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { DefaultRenderer, type DefaultRendererOptions } from "./renderer.ts";
  * import { type TreeItem } from "./tree.ts";
  *
@@ -107,7 +107,7 @@ const defaultOptions: DefaultRendererOptions = {
  *
  * @example Basic usage with default options
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { DefaultRenderer } from "./renderer.ts";
  * import { type TreeItem } from "./tree.ts";
  *
@@ -130,7 +130,7 @@ const defaultOptions: DefaultRendererOptions = {
  *
  * @example Custom symbols for file tree
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { DefaultRenderer } from "./renderer.ts";
  * import { type TreeItem } from "./tree.ts";
  *
@@ -158,7 +158,7 @@ const defaultOptions: DefaultRendererOptions = {
  *
  * @example Using custom depth function
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { DefaultRenderer } from "./renderer.ts";
  * import { type TreeItem } from "./tree.ts";
  *

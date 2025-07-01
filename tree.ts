@@ -124,7 +124,7 @@ export type TreeItem = TreeLeafItem | TreeBranchItem;
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeLeaf } from "./tree.ts";
  *
  * const leaf = { label: "File", value: "file-1" };
@@ -157,7 +157,7 @@ export function isTreeLeaf(x: unknown): x is TreeLeaf {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeBranch } from "./tree.ts";
  *
  * const branch = {
@@ -212,7 +212,7 @@ export function isTreeBranch(x: unknown): x is TreeBranch {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeBranchStrict } from "./tree.ts";
  *
  * const validBranch = {
@@ -250,7 +250,7 @@ export function isTreeBranchStrict(x: unknown): x is TreeBranch {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeNode } from "./tree.ts";
  *
  * const leaf = { label: "File", value: "file-1" };
@@ -275,7 +275,7 @@ export function isTreeNode(x: unknown): x is TreeNode {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeNodeStrict } from "./tree.ts";
  *
  * const validBranch = {
@@ -309,7 +309,7 @@ export function isTreeNodeStrict(x: unknown): x is TreeNode {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTree } from "./tree.ts";
  *
  * const validTree = {
@@ -343,7 +343,7 @@ export function isTree(x: unknown): x is Tree {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeItem } from "./tree.ts";
  *
  * const leafItem = { label: "File", value: "file-1", path: [], type: "leaf" };
@@ -395,7 +395,7 @@ export function isTreeItem(x: unknown): x is TreeItem {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeLeafItem } from "./tree.ts";
  *
  * const leafItem = { label: "File", value: "file-1", path: [], type: "leaf" };
@@ -417,7 +417,7 @@ export function isTreeLeafItem(x: unknown): x is TreeLeafItem {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { isTreeBranchItem } from "./tree.ts";
  *
  * const branchItem = { label: "Folder", value: "folder-1", path: [], type: "branch", collapsed: true };
@@ -443,7 +443,7 @@ export function isTreeBranchItem(x: unknown): x is TreeBranchItem {
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { expandNode, type Tree, type TreeBranch } from "./tree.ts";
  *
  * const tree: Tree = {
@@ -519,7 +519,7 @@ export function expandNode(
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { collapseNode, type Tree, type TreeBranch } from "./tree.ts";
  *
  * const tree: Tree = {
@@ -595,7 +595,7 @@ export function collapseNode(
  *
  * @example
  * ```ts
- * import { assertEquals } from "jsr:@std/assert@^1.0.0";
+ * import { assertEquals } from "@std/assert";
  * import { getVisibleItems, collapseNode, type Tree } from "./tree.ts";
  *
  * const tree: Tree = {
