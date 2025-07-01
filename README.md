@@ -3,13 +3,16 @@
 [![JSR](https://jsr.io/badges/@lambdalisue/ui-treeutil)](https://jsr.io/@lambdalisue/ui-treeutil)
 [![Test](https://github.com/lambdalisue/deno-ui-treeutil/actions/workflows/test.yml/badge.svg)](https://github.com/lambdalisue/deno-ui-treeutil/actions/workflows/test.yml)
 
-A tree data structure utility library for Deno, providing immutable tree operations and customizable rendering capabilities.
+A tree data structure utility library for Deno, providing immutable tree
+operations and customizable rendering capabilities.
 
 ## Features
 
-- 🌳 **Immutable tree operations** - All operations return new trees without modifying the original
+- 🌳 **Immutable tree operations** - All operations return new trees without
+  modifying the original
 - 📁 **Expand/collapse nodes** - Built-in support for collapsible tree branches
-- 🎨 **Customizable rendering** - Flexible tree rendering with configurable symbols and indentation
+- 🎨 **Customizable rendering** - Flexible tree rendering with configurable
+  symbols and indentation
 - 🔍 **Visibility management** - Get visible items based on collapsed state
 - 📝 **Type-safe** - Full TypeScript support with comprehensive type guards
 - 🧪 **Well-tested** - Extensive test coverage with BDD-style tests
@@ -25,7 +28,12 @@ deno add @lambdalisue/ui-treeutil
 ### Basic Tree Structure
 
 ```typescript
-import { type Tree, expandNode, collapseNode, getVisibleItems } from "@lambdalisue/ui-treeutil";
+import {
+  collapseNode,
+  expandNode,
+  getVisibleItems,
+  type Tree,
+} from "@lambdalisue/ui-treeutil";
 
 // Create a tree structure
 const tree: Tree = {
@@ -38,13 +46,13 @@ const tree: Tree = {
         value: "folder1",
         children: [
           { label: "File 1", value: "file1" },
-          { label: "File 2", value: "file2" }
+          { label: "File 2", value: "file2" },
         ],
-        collapsed: false
+        collapsed: false,
       },
-      { label: "File 3", value: "file3" }
-    ]
-  }
+      { label: "File 3", value: "file3" },
+    ],
+  },
 };
 
 // Collapse a node
@@ -60,7 +68,11 @@ const visibleItems = getVisibleItems(tree);
 ### Rendering Trees
 
 ```typescript
-import { DefaultRenderer, getVisibleItems, type Tree } from "@lambdalisue/ui-treeutil";
+import {
+  DefaultRenderer,
+  getVisibleItems,
+  type Tree,
+} from "@lambdalisue/ui-treeutil";
 
 // Assume we have a tree from the previous example
 const tree: Tree = {
@@ -73,13 +85,13 @@ const tree: Tree = {
         value: "folder1",
         children: [
           { label: "File 1", value: "file1" },
-          { label: "File 2", value: "file2" }
+          { label: "File 2", value: "file2" },
         ],
-        collapsed: false
+        collapsed: false,
       },
-      { label: "File 3", value: "file3" }
-    ]
-  }
+      { label: "File 3", value: "file3" },
+    ],
+  },
 };
 
 // Create a renderer with default options
@@ -101,7 +113,12 @@ console.log(lines.join("\n"));
 ### Custom Rendering
 
 ```typescript
-import { DefaultRenderer, getVisibleItems, type Tree, type TreeBranchItem } from "@lambdalisue/ui-treeutil";
+import {
+  DefaultRenderer,
+  getVisibleItems,
+  type Tree,
+  type TreeBranchItem,
+} from "@lambdalisue/ui-treeutil";
 
 // Using the same tree structure
 const tree: Tree = {
@@ -114,20 +131,20 @@ const tree: Tree = {
         value: "folder1",
         children: [
           { label: "File 1", value: "file1" },
-          { label: "File 2", value: "file2" }
+          { label: "File 2", value: "file2" },
         ],
-        collapsed: false
+        collapsed: false,
       },
-      { label: "File 3", value: "file3" }
-    ]
-  }
+      { label: "File 3", value: "file3" },
+    ],
+  },
 };
 
 const customRenderer = new DefaultRenderer({
   indent: "  ",
   rootSymbol: "🌳 ",
   leafSymbol: "📄 ",
-  branchSymbol: (item: TreeBranchItem) => item.collapsed ? "📁 " : "📂 "
+  branchSymbol: (item: TreeBranchItem) => item.collapsed ? "📁 " : "📂 ",
 });
 
 const items = getVisibleItems(tree);
@@ -145,30 +162,39 @@ const lines = customRenderer.render(items);
 ### Types
 
 #### `Tree`
+
 The root container for a tree structure.
 
 #### `TreeNode`
+
 A node in the tree, can be either a `TreeLeaf` or `TreeBranch`.
 
 #### `TreeLeaf`
+
 A terminal node with no children.
 
 #### `TreeBranch`
+
 A node that can contain child nodes and may be collapsed.
 
 #### `TreeItem`
+
 A flattened representation of a tree node used for rendering.
 
 ### Functions
 
 #### `expandNode(tree, path)`
+
 Expands a collapsed node at the specified path.
 
 #### `collapseNode(tree, path)`
+
 Collapses an expanded node at the specified path.
 
 #### `getVisibleItems(tree)`
-Returns all visible items in the tree as a flat array, excluding children of collapsed nodes.
+
+Returns all visible items in the tree as a flat array, excluding children of
+collapsed nodes.
 
 ### Type Guards
 
@@ -181,13 +207,16 @@ Returns all visible items in the tree as a flat array, excluding children of col
 ### Renderer
 
 #### `DefaultRenderer`
+
 A customizable renderer for tree items.
 
 **Options:**
-- `depth` - Function to calculate indentation depth (default: based on path length)
+
+- `depth` - Function to calculate indentation depth (default: based on path
+  length)
 - `indent` - String used for indentation (default: single space)
 - `rootSymbol` - Symbol for root items (default: empty string)
-- `leafSymbol` - Symbol for leaf nodes (default: "|  ")
+- `leafSymbol` - Symbol for leaf nodes (default: "| ")
 - `branchSymbol` - Symbol for branch nodes (default: collapsed ? "|+ " : "|- ")
 
 ## License

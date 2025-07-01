@@ -59,24 +59,24 @@ describe("Tree utilities", () => {
     it("expands a collapsed node", () => {
       const collapsedTree = collapseNode(sampleTree, ["branch1"]);
       const { root } = collapsedTree;
-      
+
       assert(root, isTreeBranch);
-      
+
       const branch1 = root.children[0];
       assertExists(branch1);
       assert(branch1, isTreeBranch);
-      
+
       assertEquals(branch1.collapsed, true);
 
       const expandedTree = expandNode(collapsedTree, ["branch1"]);
       const expandedRoot = expandedTree.root;
-      
+
       assert(expandedRoot, isTreeBranch);
-      
+
       const expandedBranch1 = expandedRoot.children[0];
       assertExists(expandedBranch1);
       assert(expandedBranch1, isTreeBranch);
-      
+
       assertEquals(expandedBranch1.collapsed, false);
     });
 
@@ -84,7 +84,7 @@ describe("Tree utilities", () => {
       const tree: Tree = {
         root: { label: "Leaf", value: "leaf" },
       };
-      
+
       const result = expandNode(tree, []);
       assertEquals(result, tree);
     });
@@ -92,16 +92,16 @@ describe("Tree utilities", () => {
     it("works with nested paths", () => {
       const collapsedTree = collapseNode(sampleTree, ["branch1", "branch2"]);
       const expandedTree = expandNode(collapsedTree, ["branch1", "branch2"]);
-      
+
       const { root } = expandedTree;
       assert(root, isTreeBranch);
-      
+
       const branch1 = root.children[0];
       assert(branch1, isTreeBranch);
-      
+
       const branch2 = branch1.children[2];
       assert(branch2, isTreeBranch);
-      
+
       assertEquals(branch2.collapsed, false);
     });
 
@@ -118,23 +118,23 @@ describe("Tree utilities", () => {
           }],
         },
       };
-      
+
       const originalTreeClone = JSON.parse(JSON.stringify(originalTree));
-      
+
       const expandedTree = expandNode(originalTree, ["branch"]);
-      
+
       assertEquals(originalTree, originalTreeClone);
-      
+
       const { root: origRoot } = originalTree;
       const { root: expRoot } = expandedTree;
       assert(origRoot, isTreeBranch);
       assert(expRoot, isTreeBranch);
-      
+
       const origBranch = origRoot.children[0];
       const expBranch = expRoot.children[0];
       assert(origBranch, isTreeBranch);
       assert(expBranch, isTreeBranch);
-      
+
       assertEquals(origBranch.collapsed, true);
       assertEquals(expBranch.collapsed, false);
     });
@@ -144,12 +144,12 @@ describe("Tree utilities", () => {
     it("collapses an expanded node", () => {
       const collapsedTree = collapseNode(sampleTree, ["branch1"]);
       const { root } = collapsedTree;
-      
+
       assert(root, isTreeBranch);
-      
+
       const branch1 = root.children[0];
       assert(branch1, isTreeBranch);
-      
+
       assertEquals(branch1.collapsed, true);
     });
 
@@ -157,7 +157,7 @@ describe("Tree utilities", () => {
       const tree: Tree = {
         root: { label: "Leaf", value: "leaf" },
       };
-      
+
       const result = collapseNode(tree, []);
       assertEquals(result, tree);
     });
@@ -165,15 +165,15 @@ describe("Tree utilities", () => {
     it("works with nested paths", () => {
       const collapsedTree = collapseNode(sampleTree, ["branch1", "branch2"]);
       const { root } = collapsedTree;
-      
+
       assert(root, isTreeBranch);
-      
+
       const branch1 = root.children[0];
       assert(branch1, isTreeBranch);
-      
+
       const branch2 = branch1.children[2];
       assert(branch2, isTreeBranch);
-      
+
       assertEquals(branch2.collapsed, true);
     });
 
@@ -190,23 +190,23 @@ describe("Tree utilities", () => {
           }],
         },
       };
-      
+
       const originalTreeClone = JSON.parse(JSON.stringify(originalTree));
-      
+
       const collapsedTree = collapseNode(originalTree, ["branch"]);
-      
+
       assertEquals(originalTree, originalTreeClone);
-      
+
       const { root: origRoot } = originalTree;
       const { root: colRoot } = collapsedTree;
       assert(origRoot, isTreeBranch);
       assert(colRoot, isTreeBranch);
-      
+
       const origBranch = origRoot.children[0];
       const colBranch = colRoot.children[0];
       assert(origBranch, isTreeBranch);
       assert(colBranch, isTreeBranch);
-      
+
       assertEquals(origBranch.collapsed, false);
       assertEquals(colBranch.collapsed, true);
     });
@@ -215,7 +215,7 @@ describe("Tree utilities", () => {
   describe("getVisibleItems", () => {
     it("returns all items when nothing is collapsed", () => {
       const items = getVisibleItems(sampleTree);
-      
+
       assertEquals(items.length, 7);
       assertEquals(items[0].value, "root");
       assertEquals(items[0].type, "branch");
@@ -240,7 +240,7 @@ describe("Tree utilities", () => {
       assertEquals(items[5].type, "leaf");
       assertEquals(items[6].value, "leaf4");
       assertEquals(items[6].type, "leaf");
-      
+
       // Check paths
       assertEquals(items[0].path, []); // root
       assertEquals(items[1].path, ["branch1"]); // branch1
@@ -254,7 +254,7 @@ describe("Tree utilities", () => {
     it("skips children of collapsed nodes", () => {
       const collapsedTree = collapseNode(sampleTree, ["branch1"]);
       const items = getVisibleItems(collapsedTree);
-      
+
       assertEquals(items.length, 2);
       assertEquals(items[0].value, "root");
       assertEquals(items[0].type, "branch");
@@ -266,7 +266,7 @@ describe("Tree utilities", () => {
       if (items[1].type === "branch") {
         assertEquals(items[1].collapsed, true);
       }
-      
+
       // Check paths
       assertEquals(items[0].path, []); // root
       assertEquals(items[1].path, ["branch1"]); // branch1
@@ -275,7 +275,7 @@ describe("Tree utilities", () => {
     it("handles partially collapsed tree", () => {
       const collapsedTree = collapseNode(sampleTree, ["branch1", "branch2"]);
       const items = getVisibleItems(collapsedTree);
-      
+
       assertEquals(items.length, 5);
       assertEquals(items[0].value, "root");
       assertEquals(items[0].type, "branch");
@@ -296,7 +296,7 @@ describe("Tree utilities", () => {
       if (items[4].type === "branch") {
         assertEquals(items[4].collapsed, true);
       }
-      
+
       // Check paths
       assertEquals(items[0].path, []); // root
       assertEquals(items[1].path, ["branch1"]); // branch1
@@ -309,7 +309,7 @@ describe("Tree utilities", () => {
       const tree: Tree = {
         root: { label: "Single Leaf", value: "leaf" },
       };
-      
+
       const items = getVisibleItems(tree);
       assertEquals(items.length, 1);
       assertEquals(items[0].value, "leaf");
@@ -333,13 +333,13 @@ describe("Tree utilities", () => {
           }],
         },
       };
-      
+
       const originalTreeClone = JSON.parse(JSON.stringify(originalTree));
-      
+
       const items = getVisibleItems(originalTree);
-      
+
       assertEquals(originalTree, originalTreeClone);
-      
+
       assertEquals(items.length, 3);
       assertEquals(items[0].value, "root");
       assertEquals(items[0].type, "branch");
@@ -353,7 +353,7 @@ describe("Tree utilities", () => {
       }
       assertEquals(items[2].value, "leaf");
       assertEquals(items[2].type, "leaf");
-      
+
       // Check paths
       assertEquals(items[0].path, []); // root
       assertEquals(items[1].path, ["branch1"]); // branch1
@@ -422,8 +422,19 @@ describe("Tree utilities", () => {
         assertEquals(isTreeBranch(null), false);
         assertEquals(isTreeBranch(undefined), false);
         assertEquals(isTreeBranch({}), false);
-        assertEquals(isTreeBranch({ label: "Test", value: "test", children: "not array" }), false);
-        assertEquals(isTreeBranch({ label: "Test", value: "test", children: [], collapsed: "not boolean" }), false);
+        assertEquals(
+          isTreeBranch({ label: "Test", value: "test", children: "not array" }),
+          false,
+        );
+        assertEquals(
+          isTreeBranch({
+            label: "Test",
+            value: "test",
+            children: [],
+            collapsed: "not boolean",
+          }),
+          false,
+        );
       });
     });
 
@@ -587,7 +598,10 @@ describe("Tree utilities", () => {
         assertEquals(isTree({}), false);
         assertEquals(isTree({ root: null }), false);
         assertEquals(isTree({ root: { invalid: "node" } }), false);
-        assertEquals(isTree({ notRoot: { label: "Test", value: "test" } }), false);
+        assertEquals(
+          isTree({ notRoot: { label: "Test", value: "test" } }),
+          false,
+        );
       });
     });
 
@@ -633,7 +647,7 @@ describe("Tree utilities", () => {
         };
         assertEquals(isTreeItem(invalidBranch), false);
       });
-      
+
       it("rejects item without path property", () => {
         const invalidItem = {
           label: "Item",
@@ -658,11 +672,36 @@ describe("Tree utilities", () => {
         assertEquals(isTreeItem(undefined), false);
         assertEquals(isTreeItem({}), false);
         assertEquals(isTreeItem({ label: "Test", value: "test" }), false);
-        assertEquals(isTreeItem({ label: "Test", value: "test", path: [], type: 123 }), false);
-        assertEquals(isTreeItem({ label: 123, value: "test", path: [], type: "leaf" }), false);
-        assertEquals(isTreeItem({ label: "Test", value: 123, path: [], type: "leaf" }), false);
-        assertEquals(isTreeItem({ label: "Test", value: "test", path: "not-array", type: "leaf" }), false);
-        assertEquals(isTreeItem({ label: "Test", value: "test", path: [123], type: "leaf" }), false);
+        assertEquals(
+          isTreeItem({ label: "Test", value: "test", path: [], type: 123 }),
+          false,
+        );
+        assertEquals(
+          isTreeItem({ label: 123, value: "test", path: [], type: "leaf" }),
+          false,
+        );
+        assertEquals(
+          isTreeItem({ label: "Test", value: 123, path: [], type: "leaf" }),
+          false,
+        );
+        assertEquals(
+          isTreeItem({
+            label: "Test",
+            value: "test",
+            path: "not-array",
+            type: "leaf",
+          }),
+          false,
+        );
+        assertEquals(
+          isTreeItem({
+            label: "Test",
+            value: "test",
+            path: [123],
+            type: "leaf",
+          }),
+          false,
+        );
       });
     });
 
@@ -693,7 +732,16 @@ describe("Tree utilities", () => {
         assertEquals(isTreeLeafItem(undefined), false);
         assertEquals(isTreeLeafItem({}), false);
         assertEquals(isTreeLeafItem({ label: "Test", value: "test" }), false);
-        assertEquals(isTreeLeafItem({ label: "Test", value: "test", path: [], type: "branch", collapsed: true }), false);
+        assertEquals(
+          isTreeLeafItem({
+            label: "Test",
+            value: "test",
+            path: [],
+            type: "branch",
+            collapsed: true,
+          }),
+          false,
+        );
       });
     });
 
@@ -745,7 +793,15 @@ describe("Tree utilities", () => {
         assertEquals(isTreeBranchItem(undefined), false);
         assertEquals(isTreeBranchItem({}), false);
         assertEquals(isTreeBranchItem({ label: "Test", value: "test" }), false);
-        assertEquals(isTreeBranchItem({ label: "Test", value: "test", path: [], type: "leaf" }), false);
+        assertEquals(
+          isTreeBranchItem({
+            label: "Test",
+            value: "test",
+            path: [],
+            type: "leaf",
+          }),
+          false,
+        );
       });
     });
   });
